@@ -1,0 +1,16 @@
+SELECT TOP 15 C.*
+FROM Cliente C
+JOIN Venda V ON C.ID = V.ClienteID
+JOIN ModeloCarro M ON V.ModeloCarroID = M.ID
+WHERE C.CPF LIKE '0%' -- CPF começa com 0
+  AND M.Nome = 'Marea' 
+  AND M.AnoLancamento = 2021
+  AND C.ID NOT IN (
+      SELECT ClienteID
+      FROM Venda V1
+      JOIN ModeloCarro M1 ON V1.ModeloCarroID = M1.ID
+      WHERE M1.Nome = 'Marea'
+      GROUP BY ClienteID
+      HAVING COUNT(*) > 1 -- Mais de uma compra do Marea
+  )
+ORDER BY V.DataVenda;

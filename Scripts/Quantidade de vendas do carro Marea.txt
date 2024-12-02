@@ -1,0 +1,4 @@
+SELECT COUNT(*) AS TotalVendasMarea
+FROM Venda V
+JOIN ModeloCarro M ON V.ModeloCarroID = M.ID
+WHERE M.Nome = 'Marea';

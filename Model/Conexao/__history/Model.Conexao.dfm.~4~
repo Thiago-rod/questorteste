@@ -1,0 +1,42 @@
+object DmConexao: TDmConexao
+  Height = 480
+  Width = 640
+  object FDConexao: TFDConnection
+    Params.Strings = (
+      'Database=Banco_Questor'
+      'User_Name=sa'
+      'Password=Admin@'
+      'Server=(local)'
+      'DriverID=MSSQL')
+    Connected = True
+    Left = 56
+    Top = 56
+  end
+  object QryProdutos: TFDQuery
+    Connection = FDConexao
+    SQL.Strings = (
+      'SELECT ID'
+      '      ,Nome'
+      '      ,AnoLancamento'
+      '  FROM ModeloCarro')
+    Left = 56
+    Top = 296
+  end
+  object QryClientes: TFDQuery
+    Connection = FDConexao
+    SQL.Strings = (
+      'SELECT ID'
+      '      ,Nome'
+      '      ,CPF'
+      '      ,DataCadastro'
+      '  FROM Cliente'
+      '')
+    Left = 200
+    Top = 296
+  end
+  object QryVendas: TFDQuery
+    Connection = FDConexao
+    Left = 344
+    Top = 296
+  end
+end

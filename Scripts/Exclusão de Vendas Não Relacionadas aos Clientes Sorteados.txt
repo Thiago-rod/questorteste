@@ -1,0 +1,25 @@
+DELETE V
+FROM Venda V
+JOIN Cliente C ON V.ClienteID = C.ID
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM (
+        SELECT TOP 15 C2.ID
+        FROM Cliente C2
+        JOIN Venda V2 ON C2.ID = V2.ClienteID
+        JOIN ModeloCarro M2 ON V2.ModeloCarroID = M2.ID
+        WHERE C2.CPF LIKE '0%'
+          AND M2.Nome = 'Marea'
+          AND M2.AnoLancamento = 2021
+          AND C2.ID NOT IN (
+              SELECT ClienteID
+              FROM Venda V3
+              JOIN ModeloCarro M3 ON V3.ModeloCarroID = M3.ID
+              WHERE M3.Nome = 'Marea'
+              GROUP BY ClienteID
+              HAVING COUNT(*) > 1
+          )
+        ORDER BY V2.DataVenda
+    ) AS Sorteados
+    WHERE Sorteados.ID = C.ID
+);

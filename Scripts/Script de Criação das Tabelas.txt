@@ -1,0 +1,21 @@
+CREATE TABLE Cliente (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    Nome NVARCHAR(100),
+    CPF CHAR(11),
+    DataCadastro DATE
+);
+
+CREATE TABLE ModeloCarro (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    Nome NVARCHAR(100),
+    AnoLancamento INT
+);
+
+CREATE TABLE Venda (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    ClienteID INT,
+    ModeloCarroID INT,
+    DataVenda DATE,
+    FOREIGN KEY (ClienteID) REFERENCES Cliente(ID),
+    FOREIGN KEY (ModeloCarroID) REFERENCES ModeloCarro(ID)
+);

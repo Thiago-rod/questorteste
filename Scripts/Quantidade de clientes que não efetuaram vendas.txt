@@ -1,0 +1,4 @@
+SELECT COUNT(*) AS ClientesSemVenda
+FROM Cliente C
+LEFT JOIN Venda V ON C.ID = V.ClienteID
+WHERE V.ID IS NULL;

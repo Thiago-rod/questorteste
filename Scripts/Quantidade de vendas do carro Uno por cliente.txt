@@ -1,0 +1,6 @@
+SELECT C.Nome, COUNT(*) AS TotalVendasUno
+FROM Venda V
+JOIN Cliente C ON V.ClienteID = C.ID
+JOIN ModeloCarro M ON V.ModeloCarroID = M.ID
+WHERE M.Nome = 'Uno'
+GROUP BY C.Nome;

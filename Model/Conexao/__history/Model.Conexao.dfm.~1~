@@ -1,0 +1,14 @@
+object DmConexao: TDmConexao
+  Height = 480
+  Width = 640
+  object FDConexao: TFDConnection
+    Params.Strings = (
+      'Database=Banco_Questor'
+      'User_Name=sa'
+      'Password=Admin@'
+      'Server=(local)'
+      'DriverID=MSSQL')
+    Left = 56
+    Top = 56
+  end
+end
